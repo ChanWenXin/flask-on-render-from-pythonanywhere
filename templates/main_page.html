@@ -1,85 +1,131 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-        <title>My scratchboard page</title>
-    </head>
+    <title>My Profile</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
 
-    <body>
-         <!-- Navbar -->
-        <nav class="navbar navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">My scratchpad</a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('logout') }}">Log out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('login') }}">Log in</a></li>
-                    {% endif %}
-                </ul>
+        .hero {
+            background: url("https://source.unsplash.com/1600x900/?space,stars") no-repeat center center;
+            background-size: cover;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin: 20px 0;
+            border: 4px solid #fff;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            color: #fff;
+            font-size: 1.5em;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #0e76a8; /* LinkedIn blue */
+        }
+
+        .navbar-inverse {
+            background-color: #222;
+            border-color: #080808;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #111;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <img src="https://images.pexels.com/photos/28638641/pexels-photo-28638641.jpeg" alt="Profile Image" class="profile-img">
+            <h1>Wen Xin Chan</h1>
+            <h4>Data Analyst | Aspiring DevOps Engineer</h4>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/wen-xin-chan-30282b1b4" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
             </div>
-        </nav>
+        </div>
+    </section>
 
-
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-             <!-- Comments Section -->
-            {% for comment in comments %}
-                <div class="row" style="margin-bottom: 1ex">
-                    <div>
-                        {{ comment.content }}
-                    </div>
-                    <div>
-                        <small>
-                            Posted
-                            {% if comment.posted %}
-                                {{ comment.posted.strftime("%A, %d %B %Y at %H:%M") }}
-                            {% else %}
-                                at an unknown time
-                            {% endif %}
-                            by
-                            {% if comment.commenter %}
-                                {{ comment.commenter.username }}
-                            {% else %}
-                                anonymous
-                            {% endif %}
-                        </small>
-                    </div>
-                </div>
-            {% endfor %}
-
-            <!-- Comment Input Form -->
-            {% if current_user.is_authenticated %}
-                <div class="row">
-                    <form action="." method="POST">
-                        <textarea name="contents" placeholder="Enter a comment" class="form-control"></textarea>
-                        <input type="submit" class="btn btn-success" value="Post comment">
-                    </form>
-                </div>
-            {% endif %}
-        </div><!-- /.container -->
-
-        <!-- LinkedIn Footer -->
-        <footer class="navbar navbar-inverse navbar-fixed-bottom">
-            <div class="container">
-                <p class="navbar-text" style="color: white;">
-                    Connect with me on
-                    <a href="https://www.linkedin.com/in/wen-xin-chan-30282b1b4/"
-                       target="_blank" style="color: #00a0dc; text-decoration: none;">
-                        LinkedIn
-                    </a>
-                </p>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">My Portfolio</a>
             </div>
-        </footer>
-    </body>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Log in</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Comments Section -->
+    <div class="container" id="comments">
+        <h3>Comments</h3>
+        {% for comment in comments %}
+            <div class="row" style="margin-bottom: 1ex">
+                <div>{{ comment.content }}</div>
+                <div>
+                    <small>
+                        Posted
+                        {% if comment.posted %}
+                            {{ comment.posted.strftime("%A, %d %B %Y at %H:%M") }}
+                        {% else %}
+                            at an unknown time
+                        {% endif %}
+                        by
+                        {% if comment.commenter %}
+                            {{ comment.commenter.username }}
+                        {% else %}
+                            anonymous
+                        {% endif %}
+                    </small>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if current_user.is_authenticated %}
+            <form action="." method="POST">
+                <textarea name="contents" placeholder="Enter a comment" class="form-control"></textarea>
+                <input type="submit" class="btn btn-success" value="Post comment">
+            </form>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Connect with me on <a href="https://www.linkedin.com/in/wen-xin-chan-30282b1b4" target="_blank">LinkedIn</a></p>
+    </div>
+</body>
 </html>
