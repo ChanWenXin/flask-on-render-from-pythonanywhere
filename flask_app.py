@@ -3,8 +3,9 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required
+from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -63,18 +64,22 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(4096))
 
+
 # Comments on main_page
 @app.route("/", methods=["GET","POST"])
 def index():
     if request.method == "GET":
-        return render_template("main_page.html", comments=Comment.query.all())
+        return render_template("main_page.html", comments=Comment.query.all(), timestamp=datetime.now())
+
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
 
     comment = Comment(content=request.form["contents"])
     db.session.add(comment)
     db.session.commit()
     return redirect (url_for('index'))
 
-# Flask-Login
+# Flask-Login for Login
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -91,7 +96,7 @@ def login():
     login_user(user)
     return redirect(url_for('index'))
 
-# Flask Logout v
+# Flask Logout
 @app.route("/logout/")
 @login_required
 def logout():
