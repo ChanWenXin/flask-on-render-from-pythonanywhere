@@ -3,6 +3,7 @@
 
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import login_user, LoginManager, UserMixin, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
@@ -24,6 +25,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize SQLAlchemy
 db = SQLAlchemy(app)
+# Enable Flask-Migrate for my site
+migrate = Migrate(app, db)
 
 # Setting up Login system
 app.secret_key = "something only you know"
