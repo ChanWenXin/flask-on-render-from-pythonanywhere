@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Skills - My Profile{% endblock %}
+
+{% block content %}
+    <!-- Skills Section -->
+    <section id="skills" class="container" style="padding: 50px 0; text-align: center;">
+        <h2 class="text-uppercase" style="font-size: 3em; margin-bottom: 20px;">Skills</h2>
+        <p class="lead" style="font-style: italic;">Repetition is the mother of Skill...<br><small>- Tony Robbins</small></p>
+        
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='data analyst.png') }}" alt="Data Analytics Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Database & Analytics</h3>
+                    <p>SQL, Qlik Sense, Data Visualization</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='python_linux.webp') }}" alt="Python and Linux Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Programming & Scripting</h3>
+                     <p>Python, Linux Shell</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='clouddevops.png') }}" alt="Cloud Technologies Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">DevOps & Cloud Tools</h3>
+                    <p>Docker, Kubernetes, Terraform, Microsoft Azure, CI/CD Pipelines</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='fullStack.png') }}" alt="Full-Stack Development Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Full-Stack Development</h3>
+                     <p>JavaScript, Node.js, EJS, HTML, CSS, Bootstrap, PostgreSQL</p>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='projectManagement.png') }}" alt="Project Management Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Cloud Project Management</h3>
+                     <p>Cloud Migration Project Management, Vendor Coordination, Cross-Functional Team Collaboration</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+{% endblock %}

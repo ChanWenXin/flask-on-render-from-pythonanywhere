@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Experience - My Profile{% endblock %}
+
+{% block content %}
+    <!-- Experience Section -->
+    <section id="experience" class="container" style="padding: 50px 0; text-align: center;">
+        <h2 class="text-uppercase" style="font-size: 3em; margin-bottom: 20px;">Projects</h2>
+        <p class="lead" style="font-style: italic;">Experience is simply the name we give our mistakes...<br><small>- Oscar Wilde</small></p>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-12">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='UOB-Logo.jpg') }}" alt="UOB Icon" class="img-responsive center-block" style="width: 100px; height: 100px;">
+                    <h3 style="margin-top: 15px;">Data Analytics @ UOB</h3>
+                    <p>Sep 2023 - Aug 2024</p>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='singlife_aviva.jpg') }}" alt="Singlife with Aviva Icon" class="img-responsive center-block" style="width: 100px; height: 100px;">
+                    <h3 style="margin-top: 15px;">Data Analytics @ Singlife</h3>
+                     <p>Sep 2020 - Aug 2023</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

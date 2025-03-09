@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Home - My Profile{% endblock %}
+
+{% block content %}
+<section class="hero" id="hero">
+    <div>
+        <img src="{{ url_for('static', filename='ProfilePic2.jpg') }}" alt="Profile Image" class="profile-img">
+        <h1>Wen Xin Chan</h1>
+        <h4>Data Analyst | Aspiring DevOps Engineer</h4>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/wen-xin-chan-30282b1b4" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ChanWenXin" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:wenxin.chan@icloud.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+
+<!-- Resume Section -->
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('static', filename='WenXinChan_Resume.pdf') }}" target="_blank" class="btn btn-primary">Download My Resume</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - My Profile{% endblock %}
+
+{% block content %}
+    <!-- Projects Section -->
+    <section id="projects" class="container" style="padding: 50px 0; text-align: center;">
+        <h2 class="text-uppercase" style="font-size: 3em; margin-bottom: 20px;">Projects</h2>
+        <p class="lead" style="font-style: italic;">The best way to predict the future is to create it...<br><small>- Albert Einstein</small></p>
+
+        <div class="row" style="margin-top: 40px;">
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='azureEcommerce.jpg') }}" alt="Data Analytics Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">E-Commerce System on Cloud Infrastructure</h3>
+                    <p>Built during a bootcamp using Azure, Full-Stack Dev (EJS, JavaScript, Bootstrap, HTML, CSS), Node.js Docker, Kubernetes, PostgreSQL, Payment Integration</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='pythonanywhere.jpg') }}" alt="Python and Linux Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Portfolio Website and Web App using Python Flask, hosted on PythonAnywhere</h3>
+                     <p>Built during a bootcamp using Python, Flask, GitHub, HTML, CSS, Bootstrap</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card" style="background-color: #fff; color: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                    <img src="{{ url_for('static', filename='send-slack-message-from-webhook.jpg') }}" alt="Cloud Technologies Icon" class="img-responsive center-block" style="width: 60px; height: 60px;">
+                    <h3 style="margin-top: 15px;">Personal Projects</h3>
+                    <p>Add the Slack Dashboard Integration where you pushed performance data into Slack.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

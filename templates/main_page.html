@@ -58,19 +58,19 @@
 </head>
 <body>
     <!-- Hero Section -->
-    <section class="hero">
+ <!--   <section class="hero" id="hero">
         <div>
-            <img src="https://images.pexels.com/photos/28638641/pexels-photo-28638641.jpeg" alt="Profile Image" class="profile-img">
+            <img src="{{ url_for('static', filename='ProfilePic2.jpg') }}" alt="Profile Image" class="profile-img">
             <h1>Wen Xin Chan</h1>
             <h4>Data Analyst | Aspiring DevOps Engineer</h4>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/wen-xin-chan-30282b1b4" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/ChanWenXin" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:wenxin.chan@icloud.com" target="_blank"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
-
+-->
     <!-- Navigation Bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -78,9 +78,13 @@
                 <a class="navbar-brand" href="#">My Portfolio</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('skills') }}">Skills</a></li>
+                <li><a href="{{ url_for('projects') }}">Projects</a></li>
+                <li><a href="{{ url_for('education') }}">Education</a></li>
+                <li><a href="{{ url_for('experience') }}">Experience</a></li>
+                <li><a href="{{ url_for('resume') }}">Resume</a></li>
+                <li><a href="{{ url_for('comments') }}">Comment</a></li>
                 {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('logout') }}">Log out</a></li>
                 {% else %}
@@ -90,7 +94,49 @@
         </div>
     </nav>
 
-    <!-- Comments Section -->
+    <!-- Skills Section
+    <section id ="skills" style="padding: 50px 0; text-align: center;">
+        <h2>Skills</h2>
+        <p>"Repitition is the mother of skill." - Tony Robbins</p>
+        <ul style="list-style: none; padding; 0;">
+            <li> Data Analyst - 4 years experience</li>
+            <li> Python Programming - 4 years experience</li>
+            <li> Cloud Technologies - Azure, AWS</li>
+        </ul>
+    </section> -->
+
+    <!-- Projects Section
+    <section id = "projects" style ="padding: 50px 0; text-align: center; background-color: #222;">
+        <h2>Projects</h2>
+        <div style="color: #fff;">
+            <h3>Portfolio Website</h3>
+            <p>A personal portfolio website showcasing my skills and projects.</p>
+            <h3>Machine Learning Model</h3>
+            <p>Developed a predictive model to classify customer churn with 85% accuracy.</p>
+        </div>
+    </section>-->
+
+    <!-- Education Section
+    <section id="education" style="padding: 50px 0; text-align: center;">
+        <h2>Education</h2>
+        <p>Bachelor of Arts in Economics - National University of Singapore</p>
+        <p>Certifications: AWS Certified Cloud Practitioner</p>
+    </section>-->
+
+     <!-- Experience Section
+    <section id="experience" style="padding: 50px 0; text-align: center; background-color: #222;">
+        <h2>Experience</h2>
+        <p>Data Analyst at UOB - Analyzed large datasets to improve user retention and VIP conversion rates.</p>
+        <p>Data Analyst at Singlife with Aviva - Worked on cloud optimization projects.</p>
+    </section>-->
+
+    <!-- Resume Section
+    <section id="resume" style="padding: 50px 0; text-align: center;">
+        <h2>Resume</h2>
+        <p>Download my resume: <a href="{{ url_for('static', filename='WenXinChan_Resume.pdf') }}" target="_blank">Click here</a></p>
+    </section>-->
+
+    <!-- Comments Section
     <div class="container" id="comments">
         <h3>Comments</h3>
         {% for comment in comments %}
@@ -121,7 +167,7 @@
                 <input type="submit" class="btn btn-success" value="Post comment">
             </form>
         {% endif %}
-    </div>
+    </div>-->
 
     <!-- Footer -->
     <div class="footer">

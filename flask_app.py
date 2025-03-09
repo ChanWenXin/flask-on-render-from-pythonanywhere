@@ -80,28 +80,54 @@ class Comment(db.Model):
     commenter_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
     commenter = db.relationship("User", foreign_keys=commenter_id)  # Relationship to User table
 
-
-# Home page: Displays comments and allows logged-in users to post comments
+# Home Page
 @app.route("/", methods=["GET", "POST"])
-def index():
+def home():
+    if request.method == "GET":
+        return render_template("home_page.html")
+
+# Skills Page
+@app.route("/skills/")
+def skills():
+    return render_template("skills_page.html")
+
+# Projects Page
+@app.route("/projects/")
+def projects():
+    return render_template("project_page.html")
+
+# Education Page
+@app.route("/education/")
+def education():
+    return render_template("education_page.html")
+
+# Experience Page
+@app.route("/experience/")
+def experience():
+    return render_template("experience_page.html")
+
+# Comment Page
+# Home page: Displays comments and allows logged-in users to post comments
+@app.route("/comments", methods=["GET", "POST"])
+def comments():
     if request.method == "GET":
         # Convert times to Singapore time before sending them to the template
         comments = Comment.query.all()
         for comment in comments:
             if comment.posted:
                 comment.posted = comment.posted.replace(tzinfo=pytz.utc).astimezone(singapore_tz)
-        return render_template("main_page.html", comments=comments)
+        return render_template("comment_page.html", comments=comments)
 
 
     # Ensure only logged-in users can post comments
     if not current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("comments"))
 
     # Add a new comment to the database
     comment = Comment(content=request.form["contents"], commenter=current_user)
     db.session.add(comment)
     db.session.commit()
-    return redirect(url_for("index"))
+    return redirect(url_for("comments"))
 
 
 # Login page: Allows users to log in with their credentials
@@ -119,7 +145,7 @@ def login():
 
     # Log in the user and redirect to the home page
     login_user(user)
-    return redirect(url_for("index"))
+    return redirect(url_for("comments"))
 
 
 # Logout route: Logs out the current user
@@ -127,4 +153,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("index"))
+    return redirect(url_for("comments"))
